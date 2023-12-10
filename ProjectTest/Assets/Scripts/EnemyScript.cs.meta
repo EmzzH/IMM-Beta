@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: b4f3bf6588575e74db1241537e40e250
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - enBulletPref: {fileID: 5922584102565699186, guid: 58c1ff4e95a7ab2409544aba0fdc6d4b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
