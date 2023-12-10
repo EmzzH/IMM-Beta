@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour
     public int playerHealth;
     public bool isSkippedTutorial;
     public int highScore;
-
+    public float roundTime;
 
     // Weapon data
     public int initialMagazine;
@@ -39,6 +39,7 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
+        // Keep the datamanager alive through rounds
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -66,11 +67,15 @@ public class DataManager : MonoBehaviour
         DataManager.Instance.coinsCollected = coinsCollected;
         DataManager.Instance.roundCounter = roundCounter;
         DataManager.Instance.playerHealth = playerHealth;
-
         if (roundCounter > 3)
         {
             highScore = enemiesKilled * roundCounter;
         }
+    }
+
+    public void SaveTime(float roundTime) 
+    {
+        DataManager.Instance.roundTime = roundTime;
     }
 
     public void SetSkippedTutorial(bool skippedTutorial)

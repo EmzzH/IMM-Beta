@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private int initialCoinsCollected;
     private int initialRoundCounter;
     private int initialHealth;
+    private float initialRoundTime;
 
     // Declare variables that will change
     private int enemiesKilled;
@@ -22,11 +23,12 @@ public class GameManager : MonoBehaviour
     private int roundCounter;
     private int playerHealth;
     private bool isSkippedTutorial;
+    private float timeAdded;
 
     // Initial health - To be modified by difficulty
     
 
-    private float timeLeft;
+    private float roundTime;
     // Game Active
     public bool isGameActive = true;
     private bool hasRoundStarted = true;
@@ -82,12 +84,14 @@ public class GameManager : MonoBehaviour
         initialEnemiesKilled = 0;
         initialRoundCounter = 0;
         initialCoinsCollected = 0;
-        timeLeft = 20;
+        initialRoundTime = 20;
+        roundTime = 10;
         coinChance = 0f;
         isGameActive = true;
         hasRoundStarted = true;
         playerHit = false;
         dataManager.mineCount = 0;
+        timeAdded = 10;
 
         /* 
          * Logic for tutoral eg. first 3 rounds
@@ -117,12 +121,17 @@ public class GameManager : MonoBehaviour
             {
                 roundCounter = dataManager.roundCounter;
                 playerHealth = initialHealth;
+                dataManager.roundTime = initialRoundTime;
                 dataManager.SetSkippedTutorial(false);
             }
             if (!isSkippedTutorial) 
             {
                 playerHealth = dataManager.playerHealth;
                 roundCounter = dataManager.roundCounter;
+            }
+            if (dataManager.roundCounter > 3)
+            { 
+                roundTime = dataManager.roundTime;
             }
             // Get data from dataManager
             enemiesKilled = dataManager.enemiesKilled;
@@ -147,26 +156,27 @@ public class GameManager : MonoBehaviour
     {
         if (isGameActive)
         {
-            timeLeft -= Time.deltaTime;
-            Timer(timeLeft);
+            RoundActive();
+            roundTime -= Time.deltaTime;
+            Timer(roundTime);
             
             //Update Slider Methods: 
             UpdateHealthValue();
             UpdateAmmoValue();
             UpdateTimeValue();
             
-            RoundActive();
+            
             PlayerHealth();
             MinesUI();
             // End the round
-            if (timeLeft < 0)
+            if (roundTime < 0)
             {
                 RoundEnded();
             }
             // Set the time to 10
             if (isBossDead)
             {
-                timeLeft = 10;
+                roundTime = 10;
                 isBossDead = false;
             }
         }
@@ -225,7 +235,7 @@ public class GameManager : MonoBehaviour
         ammoProg.value = dataManager.ammunition;
     }
     public void UpdateTimeValue(){
-      timeProg.value = timeLeft;
+      timeProg.value = roundTime;
     }
 
     public void CoinDrop(Vector3 enemyPosition) 
@@ -243,7 +253,7 @@ public class GameManager : MonoBehaviour
     {
         // Logic for ending the round
         roundCounter++;
-        timeLeft = 10;
+        // roundTime = 10;
         isGameActive = false;
         spawnManager.SetRoundActive(false);
         spawnManager.CullEnemies();
@@ -257,6 +267,8 @@ public class GameManager : MonoBehaviour
         // Manage thr round being active
         if (isGameActive == true && hasRoundStarted == true)
         {
+            roundTime = roundTime + timeAdded;
+            dataManager.SaveTime(roundTime);
             UpdateRoundText(roundCounter);
             uiController.ShowUI(timerText);
             uiController.ShowUI(killedText);
@@ -284,7 +296,8 @@ public class GameManager : MonoBehaviour
             isSkippedTutorial = dataManager.GetSkippedTutorial();
         }
         UpdateHealthText();
-        if (playerHit) {
+        if (playerHit) 
+        {
             playerHealth -= 1;
             dataManager.playerHealth = playerHealth;
             UpdateHealthText();
@@ -315,6 +328,7 @@ public class GameManager : MonoBehaviour
         dataManager.ResetWeapon();
         dataManager.hasMine = false;
         dataManager.mineCount = 0;
+        roundTime = initialRoundTime;
     }
 
     public void TutorialUI() 
@@ -343,15 +357,15 @@ public class GameManager : MonoBehaviour
     public void WaveChanger() 
     {
         // Normal waves
-        if (dataManager.roundCounter != 5)
+        if (dataManager.roundCounter != 10)
         {
             spawnManager.SpawnRandomEnemy();
         }
         // Boss wave
-        if (dataManager.roundCounter == 5)
+        if (dataManager.roundCounter == 10)
         {
             spawnManager.SpawnShooterBoss();
-            timeLeft = 300;
+            roundTime = 300;
         }
     }
 }

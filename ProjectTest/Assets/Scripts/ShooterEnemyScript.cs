@@ -118,7 +118,6 @@ public class ShooterEnemyScript : MonoBehaviour
             gameManager.UpdateEnemiesKilled(1);
             // Destroy the shooter enemy GameObject
             Destroy(gameObject);
-            
         }
     }
 }
