@@ -19,7 +19,7 @@ public class ShooterBossScript : MonoBehaviour
     private float fireRate = 10f;
     private float reload = 1f;
     // Boss health
-    private int health = 100;
+    public int health = 100;
     // Object for movment
     EnemyMovement movement = new EnemyMovement();
     // Game manager
@@ -31,6 +31,8 @@ public class ShooterBossScript : MonoBehaviour
     public Transform firePointBack;
     public Transform firePointLeft;
     public Transform firePointRight;
+    // Boss body
+    public GameObject bossBody;
 
     // Start is called before the first frame update
     void Start()
@@ -125,6 +127,7 @@ public class ShooterBossScript : MonoBehaviour
                 gameManager.isBossDead = true;
                 // Destroy the shooter enemy GameObject
                 Destroy(gameObject);
+                Destroy(bossBody);
                 
             }
         }

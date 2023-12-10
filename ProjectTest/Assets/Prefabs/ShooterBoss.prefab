@@ -440,10 +440,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRb: {fileID: 4872580423129323715}
   enemyBullet: {fileID: 5922584102565699186, guid: 58c1ff4e95a7ab2409544aba0fdc6d4b, type: 3}
+  health: 100
   firePointFront: {fileID: 1333279327875589039}
   firePointBack: {fileID: 7791995464030293716}
   firePointLeft: {fileID: 2805123429451087509}
   firePointRight: {fileID: 175710908064333462}
+  bossBody: {fileID: 4790571496091405816}
 --- !u!54 &4872580423129323715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -802,6 +804,11 @@ PrefabInstance:
       addedObject: {fileID: 8267523723211298876}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902fbaedd1f909742a7ba5a91e322e97, type: 3}
+--- !u!1 &4790571496091405816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 902fbaedd1f909742a7ba5a91e322e97, type: 3}
+  m_PrefabInstance: {fileID: 4790571496091306840}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4790571496091439576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 902fbaedd1f909742a7ba5a91e322e97, type: 3}
