@@ -21,8 +21,16 @@ public class BoomEnemyScript : MonoBehaviour
     private float zRange = 19.5f;
 
     EnemyMovement movement = new EnemyMovement();
+
+    // Death animation
+    public bool isDead;
+    public float deadTime = 3.0f;
+    Animator animator;
+
     void Start()
     {
+        // Set the animator
+        animator = GetComponent<Animator>();
         // Set objects
         enemyRb = GetComponent<Rigidbody>();
         // Set Game Gamager
@@ -38,12 +46,20 @@ public class BoomEnemyScript : MonoBehaviour
     {
         // Keep enemy in boundaries
         EnemyBoundaries(transform.position);
-        // Calculate player direction
-        Vector3 playerDirection = player.position - transform.position;
-        // Set the enemy to look at the player
-        enemyLocation.forward = playerDirection.normalized;
-        // Move the enemy
-        movement.MoveEnemy(enemyRb, speed, rotationSpeed, maxSpeed);
+        if (!isDead)
+        {
+            // Calculate player direction
+            Vector3 playerDirection = player.position - transform.position;
+            // Set the enemy to look at the player
+            enemyLocation.forward = playerDirection.normalized;
+            movement.MoveEnemy(enemyRb, speed, rotationSpeed, maxSpeed);
+        }
+        if (isDead)
+        {
+            enemyRb.velocity = new Vector3(0, 0, 0);
+            deadTime -= Time.deltaTime;
+            DeathAnnimation();
+        }
     }
 
     // Keep enemy in bounds
@@ -66,6 +82,19 @@ public class BoomEnemyScript : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, zRange);
         }
     }
+    public void DeathAnnimation()
+    {
+        if (deadTime <= 1)
+        {
+            // Get the position of the enemy
+            Vector3 enemyPositon = transform.position;
+            Instantiate(explosion, enemyPositon, Quaternion.identity);
+            // Destroy the enemy GameObject
+            Destroy(gameObject);
+        }
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerBullet") || other.CompareTag("Explosion") || other.CompareTag("Player"))
@@ -74,10 +103,11 @@ public class BoomEnemyScript : MonoBehaviour
             Vector3 enemyPositon = transform.position;
             // Drop coin
             gameManager.CoinDrop(enemyPositon);
-            Instantiate(explosion, enemyPositon, Quaternion.identity); 
-
-            // Destroy the shooter enemy GameObject
-            Destroy(gameObject);
+            // Set as dead
+            isDead = true;
+            animator.SetBool("isMoving", false);
+            animator.Play("Death");
+            animator.SetBool("Dead", true);
             // Update Score
             gameManager.UpdateEnemiesKilled(1);
         }

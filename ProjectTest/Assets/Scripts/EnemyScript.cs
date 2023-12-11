@@ -13,7 +13,8 @@ public class EnemyScript : MonoBehaviour
     private float rotationSpeed = 50f;
     private float maxSpeed = 20f;
     private Rigidbody enemyRb;
-    private float distance = 0f;
+    public bool isDead;
+    public float deadTime = 3.0f;
     // Game manager
     private GameManager gameManager;
     // Get the player
@@ -23,12 +24,15 @@ public class EnemyScript : MonoBehaviour
     private float xRange = 19.5f;
     private float zRange = 19.5f;
 
-
+    // Get the enemy movement
     EnemyMovement movement = new EnemyMovement();
+    // Get the animator
+    Animator animator;
 
     void Start()
     {
-
+        // Set the animator
+        animator = GetComponent<Animator>();
         // Set objects
         enemyRb = GetComponent<Rigidbody>();
         // Set the player
@@ -44,11 +48,20 @@ public class EnemyScript : MonoBehaviour
     {
         // Keep enemy in boundaries
         EnemyBoundaries(transform.position);
-        // Calculate player direction
-        Vector3 playerDirection = player.position - transform.position;
-        // Set the enemy to look at the player
-        enemyLocation.forward = playerDirection.normalized;
-        movement.MoveEnemy(enemyRb, speed, rotationSpeed, maxSpeed);
+        if (!isDead)
+        {
+            // Calculate player direction
+            Vector3 playerDirection = player.position - transform.position;
+            // Set the enemy to look at the player
+            enemyLocation.forward = playerDirection.normalized;
+            movement.MoveEnemy(enemyRb, speed, rotationSpeed, maxSpeed);
+        }
+        if (isDead) 
+        {
+            enemyRb.velocity = new Vector3(0, 0, 0);
+            deadTime -= Time.deltaTime;
+            DeathAnnimation();
+        }
     }
 
     // Keeep enemies in bounds
@@ -71,6 +84,16 @@ public class EnemyScript : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, zRange);
         }
     }
+
+    public void DeathAnnimation() 
+    {
+        if (deadTime <= 1) 
+        {
+            // Destroy the enemy GameObject
+            Destroy(gameObject);
+        }
+    
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerBullet") || other.CompareTag("Explosion") || other.CompareTag("Player"))
@@ -79,9 +102,11 @@ public class EnemyScript : MonoBehaviour
             Vector3 enemyPosition = transform.position;
             // Drop coin
             gameManager.CoinDrop(enemyPosition);
-
-            // Destroy the shooter enemy GameObject
-            Destroy(gameObject);
+            // Set as dead
+            isDead = true;
+            animator.SetBool("isMoving", false);
+            animator.Play("Death");
+            animator.SetBool("Dead", true);
             // Update Score
             gameManager.UpdateEnemiesKilled(1);
         }

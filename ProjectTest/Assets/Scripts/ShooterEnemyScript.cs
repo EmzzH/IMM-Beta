@@ -35,8 +35,15 @@ public class ShooterEnemyScript : MonoBehaviour
     private float xRange = 19.5f;
     private float zRange = 19.5f;
 
+    // Death animation
+    public bool isDead;
+    public float deadTime = 3.0f;
+    Animator animator;
+
     void Start()
     {
+        // Set the animator
+        animator = GetComponent<Animator>();
         // Set objects
         enemyRb = GetComponent<Rigidbody>();
         // Set the firepoint
@@ -56,17 +63,26 @@ public class ShooterEnemyScript : MonoBehaviour
     {
         // Keep enemy in boundaries
         EnemyBoundaries(transform.position);
-        // Calculate player direction
-        Vector3 playerDirection = player.position - transform.position;
-        // Set the enemy to look at the player
-        enemyLocation.forward = playerDirection.normalized;
-
-        movement.MoveShooterEnemy(enemyRb, speed, maxSpeed, radius);
-        // if statement for firing
-        if (Time.time >= reload)
+        if (!isDead) 
         {
-            Fire();
-            reload = Time.time + 1f/fireRate;
+            // Calculate player direction
+            Vector3 playerDirection = player.position - transform.position;
+            // Set the enemy to look at the player
+            enemyLocation.forward = playerDirection.normalized;
+
+            movement.MoveShooterEnemy(enemyRb, speed, maxSpeed, radius);
+            // if statement for firing
+            if (Time.time >= reload)
+            {
+                Fire();
+                reload = Time.time + 1f / fireRate;
+            }
+        }
+        if (isDead) 
+        {
+            enemyRb.velocity = new Vector3(0, 0, 0);
+            deadTime -= Time.deltaTime;
+            DeathAnnimation();
         }
     }
 
@@ -105,6 +121,17 @@ public class ShooterEnemyScript : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, zRange);
         }
     }
+
+    public void DeathAnnimation()
+    {
+        if (deadTime <= 1)
+        {
+            // Destroy the enemy GameObject
+            Destroy(gameObject);
+        }
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Enemy die
@@ -116,8 +143,11 @@ public class ShooterEnemyScript : MonoBehaviour
             gameManager.CoinDrop(enemyPositon);
             // Update Score
             gameManager.UpdateEnemiesKilled(1);
-            // Destroy the shooter enemy GameObject
-            Destroy(gameObject);
+            // Set as dead
+            isDead = true;
+            animator.SetBool("isMoving", false);
+            animator.Play("Death");
+            animator.SetBool("Dead", true);
         }
     }
 }

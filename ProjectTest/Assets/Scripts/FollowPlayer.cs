@@ -11,13 +11,14 @@ public class FollowPlayer : MonoBehaviour
     // public GameObject shop;
     // Offset for camera
     private Vector3 offset = new Vector3(0,20,0);
+    
     // Bool for shop
     public bool isInShop = false;
     
     
     void Start()
     {
-        
+  
     }
 
     
@@ -37,7 +38,6 @@ public class FollowPlayer : MonoBehaviour
     {
         // Offset camera above player
         transform.position = player.transform.position + offset;
-
     }
 
     public void MoveCamera()
