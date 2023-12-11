@@ -43,10 +43,18 @@ public class ShooterBossScript : MonoBehaviour
         firePoint = transform;
 
         // Set Game Gamager
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
         // Set spawn manager
         spawnManager = FindObjectOfType<SpawnManager>();
-        
+
+        // Set the fire points
+        /*
+        firePointFront = transform.Find("Font");
+        firePointBack = transform.Find("Back");
+        firePointLeft = transform.Find("Left");
+        firePointRight = transform.Find("Right");
+        */
+
     }
 
     // Update is called once per frame

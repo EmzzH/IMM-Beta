@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBullet: {fileID: 8312224983479657808, guid: d71bb2d7005d7cd42b63f98b9358b1db, type: 3}
-  playerRocket: {fileID: 1783106780403429546, guid: 4588bb6cab9e72d43b4c27e702acf4ae, type: 3}
+  playerRocket: {fileID: 7653442148824258998, guid: 516e807eb24b2fb4eb223594f3194b6f, type: 3}
   playerGun: {fileID: 6388398440179048823}
   playerMine: {fileID: 882630892611801007, guid: c817aef4765195c45b0b61e071800ece, type: 3}
   gameManager: {fileID: 0}

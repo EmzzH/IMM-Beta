@@ -357,12 +357,12 @@ public class GameManager : MonoBehaviour
     public void WaveChanger() 
     {
         // Normal waves
-        if (dataManager.roundCounter != 10)
+        if (dataManager.roundCounter != 5)
         {
             spawnManager.SpawnRandomEnemy();
         }
         // Boss wave
-        if (dataManager.roundCounter == 10)
+        if (dataManager.roundCounter == 5)
         {
             spawnManager.SpawnShooterBoss();
             roundTime = 300;
