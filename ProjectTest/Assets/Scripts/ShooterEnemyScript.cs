@@ -126,6 +126,12 @@ public class ShooterEnemyScript : MonoBehaviour
     {
         if (deadTime <= 1)
         {
+            // Get the position of the enemy
+            Vector3 enemyPositon = transform.position;
+            // Drop coin
+            gameManager.CoinDrop(enemyPositon);
+            // Update Score
+            gameManager.UpdateEnemiesKilled(1);
             // Destroy the enemy GameObject
             Destroy(gameObject);
         }
@@ -137,12 +143,7 @@ public class ShooterEnemyScript : MonoBehaviour
         // Enemy die
         if (other.CompareTag("PlayerBullet") || other.CompareTag("Explosion") || other.CompareTag("Player"))
         {
-            // Get the position of the enemy
-            Vector3 enemyPositon = transform.position;
-            // Drop coin
-            gameManager.CoinDrop(enemyPositon);
-            // Update Score
-            gameManager.UpdateEnemiesKilled(1);
+           
             // Set as dead
             isDead = true;
             animator.SetBool("isMoving", false);

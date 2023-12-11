@@ -89,6 +89,12 @@ public class EnemyScript : MonoBehaviour
     {
         if (deadTime <= 1) 
         {
+            // Get the position of the enemy
+            Vector3 enemyPosition = transform.position;
+            // Drop coin
+            gameManager.CoinDrop(enemyPosition);
+            // Update Score
+            gameManager.UpdateEnemiesKilled(1);
             // Destroy the enemy GameObject
             Destroy(gameObject);
         }
@@ -97,18 +103,12 @@ public class EnemyScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerBullet") || other.CompareTag("Explosion") || other.CompareTag("Player"))
-        {
-            // Get the position of the enemy
-            Vector3 enemyPosition = transform.position;
-            // Drop coin
-            gameManager.CoinDrop(enemyPosition);
+        { 
             // Set as dead
             isDead = true;
             animator.SetBool("isMoving", false);
             animator.Play("Death");
             animator.SetBool("Dead", true);
-            // Update Score
-            gameManager.UpdateEnemiesKilled(1);
         }
     }
 }
