@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     private int enemiesKilled;
     public int coinsCollected;
     private int roundCounter;
-    private int playerHealth;
+    public int playerHealth;
     private bool isSkippedTutorial;
     private float timeAdded;
 
@@ -68,7 +68,8 @@ public class GameManager : MonoBehaviour
     private DataManager dataManager;
     // Bool for reload
     private bool isReloading1;
-    // Bool for Boss
+    // Bool data
+    private int bossWave = 10;
     public bool isBossDead;
 
 
@@ -80,18 +81,35 @@ public class GameManager : MonoBehaviour
         // Tutorial skip
         isSkippedTutorial = dataManager.GetSkippedTutorial();
         // Set the initial variables - We can edit these to change difficulty (Used for resetting)
-        initialHealth = 3;
+        if (dataManager.difficulty == 1)
+        {
+            initialHealth = 5;
+        }
+        if (dataManager.difficulty == 2)
+        {
+            initialHealth = 3;
+        }
+        if (dataManager.difficulty == 3)
+        {
+            initialHealth = 1;
+        }
+        
         initialEnemiesKilled = 0;
         initialRoundCounter = 0;
         initialCoinsCollected = 0;
         initialRoundTime = 20;
         roundTime = 10;
-        coinChance = 0f;
+        coinChance = 0.25f;
         isGameActive = true;
         hasRoundStarted = true;
         playerHit = false;
         dataManager.mineCount = 0;
         timeAdded = 10;
+
+        // Set progressbar values
+        healthProg.maxValue = initialHealth;
+        timeProg.maxValue = roundTime;
+        ammoProg.maxValue = dataManager.initialAmmunition;
 
         /* 
          * Logic for tutoral eg. first 3 rounds
@@ -319,6 +337,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Resets the variables
     public void ResetVariables()
     {
         playerHealth = initialHealth;
@@ -331,6 +350,7 @@ public class GameManager : MonoBehaviour
         roundTime = initialRoundTime;
     }
 
+    // Displays the tutorial UI
     public void TutorialUI() 
     {
         if (dataManager.roundCounter == 1)
@@ -346,6 +366,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // UI for when player has mines
     public void MinesUI()
     {
         if (dataManager.hasMine)
@@ -357,15 +378,16 @@ public class GameManager : MonoBehaviour
     public void WaveChanger() 
     {
         // Normal waves
-        if (dataManager.roundCounter != 5)
+        if (dataManager.roundCounter != bossWave)
         {
             spawnManager.SpawnRandomEnemy();
         }
         // Boss wave
-        if (dataManager.roundCounter == 5)
+        if (dataManager.roundCounter == bossWave)
         {
             spawnManager.SpawnShooterBoss();
             roundTime = 300;
+            timeProg.maxValue = roundTime;
         }
     }
 }

@@ -10,7 +10,7 @@ public class SceneController : MonoBehaviour
 
     public string destinationSceneName;
     public string currentScene;
-    
+    public int difficulty = 3;
 
     void Start()
     {
@@ -42,5 +42,13 @@ public class SceneController : MonoBehaviour
     { 
         dataManager.isSkippedTutorial = isSkippedTutorial;
     }
+
+    // To avoid DatManager missing when player dies and reloads menu scene
+    public void SetDifficulty(int difficulty) 
+    { 
+        this.difficulty = difficulty;
+        dataManager.difficulty = this.difficulty;
+    }
+
 }
 

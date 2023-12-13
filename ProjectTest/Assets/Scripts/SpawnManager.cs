@@ -22,8 +22,9 @@ public class SpawnManager : MonoBehaviour
     private float yPos = 1;
 
     // Delay for Spawn
-    private float startDelay = 2.0f;
+    private float startDelay = 1.0f;
     private float spawnInterval = 1.0f;
+    public float spawnInt = 0;
 
     // Round counter
     bool isGameActive = true;
@@ -53,6 +54,20 @@ public class SpawnManager : MonoBehaviour
         roundCounter = dataManager.roundCounter;
 
         UpdateEnemyPrefabs(roundCounter);
+
+        // Change spawn rate based on diffulty (harder the diffuclty the faster the mean spawns)
+        if (dataManager.difficulty == 1)
+        {
+            spawnInterval = 7.0f;
+        }
+        if (dataManager.difficulty == 2)
+        {
+            spawnInterval = 5.0f;
+        }
+        if (dataManager.difficulty == 3)
+        {
+            spawnInterval = 3.0f;
+        }
     }
 
     // Update the prefabs
@@ -92,12 +107,10 @@ public class SpawnManager : MonoBehaviour
             // Random enemy number
             int enemyArrayPos = Random.Range(0, enemyPrefabs.Length);
             GameObject enemyInstance = Instantiate(enemyPrefabs[enemyArrayPos], spawnPos, enemyPrefabs[enemyArrayPos].transform.rotation);
-            // spawn ball at random times
-            spawnInterval = Random.Range(startDelay, 4f);
 
             // Schedule the next enemy spawn
-            spawnInterval = Random.Range(startDelay, 4f);
-            Invoke("SpawnRandomEnemy", spawnInterval);
+            spawnInt = Random.Range(startDelay, spawnInterval);
+            Invoke("SpawnRandomEnemy", spawnInt);
 
             // Add the enemies to the list as they spawn
             activeEnemies.Add(enemyInstance);

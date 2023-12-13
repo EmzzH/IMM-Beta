@@ -10733,6 +10733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsCollected: 0
+  playerHealth: 0
   isGameActive: 0
   playerHit: 0
   killedText: {fileID: 413778706}
@@ -27255,7 +27256,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 3
+  m_MaxValue: 5
   m_WholeNumbers: 0
   m_Value: 3
   m_OnValueChanged:
@@ -55490,6 +55491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationSceneName: 
   currentScene: 
+  difficulty: 3
 --- !u!1001 &1744657957
 PrefabInstance:
   m_ObjectHideFlags: 0

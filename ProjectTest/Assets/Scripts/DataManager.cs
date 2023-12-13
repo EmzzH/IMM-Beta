@@ -14,7 +14,8 @@ public class DataManager : MonoBehaviour
     public bool isSkippedTutorial;
     public int highScore;
     public float roundTime;
-
+    // Difficulty setting 1 - Easy, 2 - Med, 3 - hard
+    public int difficulty = 2;
     // Weapon data
     public int initialMagazine;
     public int initialAmmunition;
@@ -32,8 +33,9 @@ public class DataManager : MonoBehaviour
     public int mineCount = 0;
     public float mineLayTime = 2f;
 
-    public void Start()
+    void Start()
     {
+        // Resets the weapon when object loads - eg. player dies
         ResetWeapon();
     }
 
@@ -50,6 +52,7 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    // Resets weapon variable back to pistol
     public void ResetWeapon()
     {
         playerWeapon = "pistol";
@@ -61,36 +64,48 @@ public class DataManager : MonoBehaviour
         fireRate = 0.3f;
     }
 
+    // Saves the round data at crucial points
     public void SaveData(int enemiesKilled, int coinsCollected, int roundCounter, int playerHealth)
     {
         DataManager.Instance.enemiesKilled = enemiesKilled;
         DataManager.Instance.coinsCollected = coinsCollected;
         DataManager.Instance.roundCounter = roundCounter;
         DataManager.Instance.playerHealth = playerHealth;
+        // Calculate the score for rounds outside of the tutorial
         if (roundCounter > 3)
         {
-            highScore = enemiesKilled * roundCounter;
+            highScore = (enemiesKilled * roundCounter) * difficulty;
         }
     }
 
+    // Saves the time that will increase
     public void SaveTime(float roundTime) 
     {
         DataManager.Instance.roundTime = roundTime;
     }
 
+    // For when the player skips the tutorial
     public void SetSkippedTutorial(bool skippedTutorial)
     {
         this.isSkippedTutorial = skippedTutorial;
     }
 
+    // Get the skipped tutorial bool
     public bool GetSkippedTutorial()
     {
         return this.isSkippedTutorial;
     }
 
+    // Sets the round counter
     public void SetRound(int roundCounter)
     {
         this.roundCounter = roundCounter;
+    }
+
+    // Set difficulty data
+    public void setDifficulty(int difficulty) 
+    { 
+        this.difficulty = difficulty;
     }
 }
 
