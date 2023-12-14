@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public GameObject shotGun;
     public GameObject machineGun;
     public GameObject rocketLauncher;
+    private ParticleSystem muzzleFlash;
 
     // Player location for shop
     private Vector3 playerShopPosition = new Vector3(0, 1, 0);
@@ -88,6 +89,9 @@ public class PlayerController : MonoBehaviour
 
         // Set the player weapon
         WeaponCheck();
+        
+        // Get the particle system for muzzle flash
+        muzzleFlash = GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -192,6 +196,8 @@ public class PlayerController : MonoBehaviour
             dataManager.ammunition--;
             // Instantiate a bullet at the fire point's position and rotation
             Instantiate(playerBullet, firePoint.position, Quaternion.LookRotation(fireDirection));
+            // Muzzle flash particle
+            muzzleFlash.Play();
         }
 
         if (playerWeapon == "shotgun")
@@ -215,6 +221,8 @@ public class PlayerController : MonoBehaviour
             Instantiate(playerBullet, firePoint.position, leftRotation);
             // Right bullet
             Instantiate(playerBullet, firePoint.position, rightRotation);
+            // Muzzle flash particle
+            muzzleFlash.Play();
         }
 
         if (playerWeapon == "rocketlauncher")
@@ -223,6 +231,8 @@ public class PlayerController : MonoBehaviour
             dataManager.ammunition--;
             // Shoot bullet and rocket
             Instantiate(playerRocket, firePoint.position, Quaternion.LookRotation(fireDirection));
+            // Muzzle flash particle
+            muzzleFlash.Play();
         }
 
         if (playerWeapon == "machinegun")
@@ -231,6 +241,8 @@ public class PlayerController : MonoBehaviour
             dataManager.ammunition--;
             // Shoot bullet and rocket
             Instantiate(playerBullet, firePoint.position, Quaternion.LookRotation(fireDirection));
+            // Muzzle flash particle
+            muzzleFlash.Play();
         }
 
         // Check for game manager
