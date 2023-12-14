@@ -41282,6 +41282,7 @@ MonoBehaviour:
   - {fileID: 3665200271946174653, guid: 95053042ec91e584582b429d5053ed69, type: 3}
   - {fileID: 3893151538549486957, guid: 726a4a0bd0bd60841b07fe499d135cfd, type: 3}
   - {fileID: 4961954844045068498, guid: db634c2e231072a4686cccdcf0aef6a0, type: 3}
+  spawnInt: 0
   activeEnemies: []
   activeBullets: []
   shopPrefabs:

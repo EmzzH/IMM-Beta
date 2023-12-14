@@ -32,7 +32,7 @@ public class Shotgun : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Buying shotgun
-        if (localMoney >= price)
+        if (localMoney >= price && dataManager.playerWeapon != "shotgun")
         {
             // Change price
             localMoney -= price;

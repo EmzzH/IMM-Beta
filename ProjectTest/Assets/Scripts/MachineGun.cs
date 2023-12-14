@@ -31,7 +31,7 @@ public class Sniper : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Buying item
-        if (localMoney >= price)
+        if (localMoney >= price && dataManager.playerWeapon != "machinegun")
         {
             // Change price
             localMoney -= price;

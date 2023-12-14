@@ -138,7 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ebac36497f30244b4808e5c07f34d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 7671898561760738930, guid: 8996d5198a39001438da9f1ae70397a4, type: 3}
+  explosion: {fileID: 6790660579103700190, guid: a8b3f93ea1d21d2439b134cd3979e0e0, type: 3}
+  isDead: 0
+  deadTime: 3
 --- !u!95 &4401531874436765579
 Animator:
   serializedVersion: 5

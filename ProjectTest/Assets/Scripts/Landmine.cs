@@ -39,7 +39,7 @@ public class Grenade : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Buying item
-        if (other.CompareTag("PlayerBullet") && localMoney >= price && SceneManager.GetActiveScene().buildIndex == 2)
+        if (other.CompareTag("PlayerBullet") && localMoney >= price && SceneManager.GetActiveScene().buildIndex == 2 && !dataManager.hasMine)
         {
             // Change price
             localMoney -= price;

@@ -32,7 +32,7 @@ public class RocketLauncher : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Buying item
-        if (localMoney >= price)
+        if (localMoney >= price && dataManager.playerWeapon != "rocketlauncher")
         {
             // Change price
             localMoney -= price;
