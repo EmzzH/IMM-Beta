@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/emilyhermon/Downloads/IMM-Working-Project-main/ProjectTest/Assembly-CSharp.csproj": {}
+    "/Users/emilyhermon/Documents/GitHub/IMM-Beta/ProjectTest/Assembly-CSharp.csproj": {}
   },
   "projects": {
-    "/Users/emilyhermon/Downloads/IMM-Working-Project-main/ProjectTest/Assembly-CSharp.csproj": {
+    "/Users/emilyhermon/Documents/GitHub/IMM-Beta/ProjectTest/Assembly-CSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/emilyhermon/Downloads/IMM-Working-Project-main/ProjectTest/Assembly-CSharp.csproj",
+        "projectUniqueName": "/Users/emilyhermon/Documents/GitHub/IMM-Beta/ProjectTest/Assembly-CSharp.csproj",
         "projectName": "Assembly-CSharp",
-        "projectPath": "/Users/emilyhermon/Downloads/IMM-Working-Project-main/ProjectTest/Assembly-CSharp.csproj",
+        "projectPath": "/Users/emilyhermon/Documents/GitHub/IMM-Beta/ProjectTest/Assembly-CSharp.csproj",
         "packagesPath": "/Users/emilyhermon/.nuget/packages/",
-        "outputPath": "/Users/emilyhermon/Downloads/IMM-Working-Project-main/ProjectTest/obj/",
+        "outputPath": "/Users/emilyhermon/Documents/GitHub/IMM-Beta/ProjectTest/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/emilyhermon/.nuget/NuGet/NuGet.Config"

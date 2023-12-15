@@ -31,7 +31,7 @@ public class Shop : MonoBehaviour
         // Display for round 1 shop tutoiral screen
         if (dataManager.roundCounter == 2) 
         {
-            tutorialText.text = "Welcome to the shop, shoot items to buy. Shoot the exit to leave.";
+            tutorialText.text = "Shoot item you'd like to buy.\n Shoot the exit to leave.";
         }
         //Add Shop Prefab Items        
         for (int i = 0; i < 5; i++)

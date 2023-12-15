@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     public Slider healthProg; 
     public Slider ammoProg;
     public Slider timeProg;
+    public Slider minesLeft;
 
     //public GameObject tutorialPanel;
 
@@ -105,6 +106,7 @@ public class GameManager : MonoBehaviour
         playerHit = false;
         dataManager.mineCount = 0;
         timeAdded = 10;
+        //uiController.HideUI(minesText);
 
         // Set progressbar values
         healthProg.maxValue = initialHealth;
@@ -372,6 +374,7 @@ public class GameManager : MonoBehaviour
         if (dataManager.hasMine)
         {
             minesText.text = "Mines: " + (dataManager.maxMines - (dataManager.mineCount-1));
+           //uiController.ShowUI(minesText);
         }
     }
 
