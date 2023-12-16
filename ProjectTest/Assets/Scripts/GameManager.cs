@@ -368,8 +368,8 @@ public class GameManager : MonoBehaviour
         if (dataManager.roundCounter == 1)
 
         {    //have set this to hide or now so yoou can still play the game but you can show UI to see it again 
-             uiController.HideUI(tutorialText);
-             //uiController.ShowUI(tutorialText);
+             //uiController.HideUI(tutorialText);
+             uiController.ShowUI(tutorialText);
            
         }
         if (dataManager.roundCounter > 1)
