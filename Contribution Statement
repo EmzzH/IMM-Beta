@@ -1,0 +1,38 @@
+Contribution Statement for Group Members:
+
+B00156733 Emily Hermon
+B00156001 Sam Jones
+B00151533 Anna Kellegher
+
+This is a statement to say that the contributions are as follows for the project:
+
+UI - Emily
+Did UI design
+Added images, checkbox buttons, fonts, and frames
+Did dynamic update UI variables and progress bars
+Anchor to screen etc
+Variables for health and ammo and time dynamic between levels
+
+Game Play - Anna
+Usability and playability - clear instructions and tutorial round
+Audio - gun sounds, coin collection sound, background sound
+Animation - coin spin
+
+Scripting - Sam
+Look at mouse (tutorial is linked in code)
+Code structure and layout (classes, methods, objects),
+How data is shared between classes/objects (datamanager that speaks to GameManager, SpawnManager, PlayerController, etc, and vice versa),
+How Game Objects interact  (Player/Enemy bullets, instantiating explosions, shop objects, coins)
+AI - Black Spiders - Run at player, Brown Spiders - run at player and explode, Green Spiders - Stay back from player and shoot at player, boss - spins and progressivly shoots more bullets and spins faster,
+Randomisation of spawn points, enemy types to spawn, coid drop rate.
+Asset Implementation (weapons, texturers, animations)
+Level design (game/shop/boss wave)
+Conditional Game play elements (Difficulty selector (player health and spawn rate), player mines, boss wave, checking if player has enough coins to buy)
+Score calculation ((enemies killed * wave number) * difficulty)
+Arrays (enemy types), Lists (active bullets, active enemies (these then culled on round end))
+Explosion/shooting annimation
+Weapon fire rates, reload times
+
+SIGNED:
+
+All Members. 
