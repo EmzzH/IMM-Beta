@@ -37,6 +37,9 @@ This asset is used for the player weapon models
 Mines : https://assetstore.unity.com/packages/3d/props/weapons/at-mine-37653
 This asset is used for the mine model
 
+Cursor : https://assetstore.unity.com/packages/2d/gui/icons/crosshairs-25-free-crosshairs-pack-216732
+Cursor taken from here
+
 **Audio**
 GameMusic - https://freesound.org/people/DenKyschuk/sounds/715787/
 ShopMusic - https://freesound.org/people/DenKyschuk/sounds/715785/
