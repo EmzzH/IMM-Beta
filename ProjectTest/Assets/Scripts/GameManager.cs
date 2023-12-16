@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI tutorialText;
     public TextMeshProUGUI ammoText;
     public TextMeshProUGUI minesText;
+    public Canvas tutorialCanvas;
    
 
     //Slider:
@@ -110,7 +111,6 @@ public class GameManager : MonoBehaviour
         playerHit = false;
         dataManager.mineCount = 0;
         timeAdded = 10;
-        //uiController.HideUI(minesText);
 
         // Set progressbar values
         healthProg.maxValue = initialHealth;
@@ -238,12 +238,7 @@ public class GameManager : MonoBehaviour
         roundText.text = "Round: " + dataManager.roundCounter;
     }
 
-    public void UpdateHealthText() 
-    {
-        //SAM I COMMENTED THIS OUT AS HEALTHBAR IS GONNA UPDATE THE HEALTH BUT LEFT IT IN JUST IN CASE U NEED IT ELSEWHERE - ALSO LEFT THE HEALTH TEXT ON THE CONSOLE UNTICKED>
-        //playerHealthText.text = "Health: " + dataManager.playerHealth;
-        //playerHealthText.text = "Health: ";
-    }
+
 
     public void UpdateAmmoText(bool isReloading) 
     {
@@ -325,12 +320,10 @@ public class GameManager : MonoBehaviour
             playerHealth = dataManager.playerHealth;
             isSkippedTutorial = dataManager.GetSkippedTutorial();
         }
-        UpdateHealthText();
         if (playerHit) 
         {
             playerHealth -= 1;
             dataManager.playerHealth = playerHealth;
-            UpdateHealthText();
             playerHit = false;
         }
         // You die
@@ -368,13 +361,12 @@ public class GameManager : MonoBehaviour
         if (dataManager.roundCounter == 1)
 
         {    //have set this to hide or now so yoou can still play the game but you can show UI to see it again 
-             //uiController.HideUI(tutorialText);
-             uiController.ShowUI(tutorialText);
+            uiController.ShowCanvas(tutorialCanvas);
            
         }
         if (dataManager.roundCounter > 1)
         {
-            uiController.HideUI(tutorialText);
+            uiController.HideCanvas(tutorialCanvas);
         }
     }
 
