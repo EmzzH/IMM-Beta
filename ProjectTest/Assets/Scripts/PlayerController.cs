@@ -51,12 +51,6 @@ public class PlayerController : MonoBehaviour
     private float xRange = 19.5f;
     private float zRange = 19.5f;
 
-    // Player material
-    public Material playerMat;
-    // Hurt time
-    private float hurtTime = 2f;
-    // Time left
-    private float timeLeft = 0f;
     // Is hit boolean
     public bool isHit = false;
 
@@ -65,6 +59,13 @@ public class PlayerController : MonoBehaviour
     public string playerWeapon;
 
     private float fireTimer = 0.0f;
+
+    // Audio
+    private AudioSource playerAudio;
+    public AudioClip gunShotSound;
+    public AudioClip reloadSound;
+    public AudioClip playerHitSound;
+    public AudioClip landMineSound;
 
     void Start()
     {
@@ -84,14 +85,14 @@ public class PlayerController : MonoBehaviour
         // Set Scene manager
         sceneManager = FindObjectOfType<SceneController>();
 
-        // Set the player colour
-        playerMat.SetColor("_Color", Color.green);
-
         // Set the player weapon
         WeaponCheck();
         
         // Get the particle system for muzzle flash
         muzzleFlash = GetComponent<ParticleSystem>();
+
+        // Get the playerAUdio
+        playerAudio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -137,6 +138,7 @@ public class PlayerController : MonoBehaviour
         // Reload Logic
         IEnumerator Reload()
         {
+            playerAudio.PlayOneShot(reloadSound, 1f);
             isReloading = true;
             if (gameManager != null)
             {
@@ -189,7 +191,6 @@ public class PlayerController : MonoBehaviour
         // Only reset the timer if we're actually firing
         fireTimer = 0.0f;
 
-
         if (playerWeapon == "pistol")
         {
             // Decrease ammunition
@@ -198,6 +199,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(playerBullet, firePoint.position, Quaternion.LookRotation(fireDirection));
             // Muzzle flash particle
             muzzleFlash.Play();
+            playerAudio.PlayOneShot(gunShotSound, 1f);
         }
 
         if (playerWeapon == "shotgun")
@@ -223,6 +225,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(playerBullet, firePoint.position, rightRotation);
             // Muzzle flash particle
             muzzleFlash.Play();
+            playerAudio.PlayOneShot(gunShotSound, 1f);
         }
 
         if (playerWeapon == "rocketlauncher")
@@ -233,6 +236,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(playerRocket, firePoint.position, Quaternion.LookRotation(fireDirection));
             // Muzzle flash particle
             muzzleFlash.Play();
+            playerAudio.PlayOneShot(gunShotSound, 1f);
         }
 
         if (playerWeapon == "machinegun")
@@ -243,12 +247,14 @@ public class PlayerController : MonoBehaviour
             Instantiate(playerBullet, firePoint.position, Quaternion.LookRotation(fireDirection));
             // Muzzle flash particle
             muzzleFlash.Play();
+            playerAudio.PlayOneShot(gunShotSound, 1f);
         }
 
         // Check for game manager
         if (gameManager != null)
         {
             gameManager.UpdateAmmoText(isReloading);
+            
         }
     }
 
@@ -256,23 +262,17 @@ public class PlayerController : MonoBehaviour
     {
         if (dataManager.hasMine && dataManager.mineCount <= dataManager.maxMines)
         {
+            playerAudio.PlayOneShot(landMineSound, 0.5f);
             Instantiate(playerMine, transform.position, Quaternion.LookRotation(fireDirection));
         }
     }
 
     public void PlayerHit()
     {
-        playerMat.SetColor("_Color", Color.red);
-
-        timeLeft += Time.deltaTime;
-        if (timeLeft >= hurtTime)
-        {
-            // Set the player to green again
-            playerMat.SetColor("_Color", Color.green);
-            // Reset the player being hit
-            timeLeft = 0;
-            isHit = false;
-        }
+        // Play hit sound
+        playerAudio.PlayOneShot(playerHitSound, 1f);
+        // Reset the player being hit
+        isHit = false;
     }
 
     // Player Boundaries

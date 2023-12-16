@@ -73,6 +73,10 @@ public class GameManager : MonoBehaviour
     private int bossWave = 10;
     public bool isBossDead;
 
+    // Audio Sounds
+    private AudioSource gameAudio;
+    public AudioClip coinSound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -100,7 +104,7 @@ public class GameManager : MonoBehaviour
         initialCoinsCollected = 0;
         initialRoundTime = 20;
         roundTime = 10;
-        coinChance = 0.25f;
+        coinChance = 0.4f;
         isGameActive = true;
         hasRoundStarted = true;
         playerHit = false;
@@ -169,6 +173,8 @@ public class GameManager : MonoBehaviour
         spawnManager = FindObjectOfType<SpawnManager>();
         // Get the UIController
         uiController = FindObjectOfType<UIController>();
+        // Set the audioSource
+        gameAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -218,6 +224,10 @@ public class GameManager : MonoBehaviour
     // Coins collected
     public void UpdateCoinCollected(int coinsToAdd) 
     {
+        // Logic for collection sound
+        if (coinsToAdd > 0) {
+            gameAudio.PlayOneShot(coinSound, 1f);
+        }
         coinsCollected += coinsToAdd;
         //coinsText.text = "Coins: " + coinsCollected;
         coinsText.text = "" + coinsCollected;

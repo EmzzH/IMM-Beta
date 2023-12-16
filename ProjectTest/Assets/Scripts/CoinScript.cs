@@ -11,6 +11,7 @@ public class CoinScript : MonoBehaviour
     // Set rotation of coin spawning
     private Quaternion initialRotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
 
+
     // Start is called before the first frame update
     void Start()
     {

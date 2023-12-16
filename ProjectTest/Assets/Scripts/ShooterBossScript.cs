@@ -34,6 +34,10 @@ public class ShooterBossScript : MonoBehaviour
     // Boss body
     public GameObject bossBody;
 
+    // Sound
+    private AudioSource spiderAudio;
+    public AudioClip gunShotSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +50,8 @@ public class ShooterBossScript : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         // Set spawn manager
         spawnManager = FindObjectOfType<SpawnManager>();
-
+        // Set the spiderAudio
+        spiderAudio = GetComponent<AudioSource>();
         // Set the fire points
         /*
         firePointFront = transform.Find("Font");
@@ -106,6 +111,8 @@ public class ShooterBossScript : MonoBehaviour
 
     public void FireBullet(Transform firePoint) 
     {
+        // Play gunshot audio
+        spiderAudio.PlayOneShot(gunShotSound, 1f);
         // Instantiate a bullet at the fire point's position and rotation
         GameObject bullet = Instantiate(enemyBullet, firePoint.position, firePoint.rotation);
         // Add the bullets to the list in spawn manager

@@ -29,6 +29,10 @@ public class EnemyScript : MonoBehaviour
     // Get the animator
     Animator animator;
 
+    // Sound
+    private AudioSource spiderAudio;
+    public AudioClip squishAudio;
+
     void Start()
     {
         // Set the animator
@@ -41,6 +45,10 @@ public class EnemyScript : MonoBehaviour
         enemyLocation = transform;
         // Set Game Gamager
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // Set the spiderAudio
+        spiderAudio = GetComponent<AudioSource>();
+        // Play the spider audio
+        spiderAudio.Play();
     }
 
     
@@ -55,7 +63,9 @@ public class EnemyScript : MonoBehaviour
             // Set the enemy to look at the player
             enemyLocation.forward = playerDirection.normalized;
             movement.MoveEnemy(enemyRb, speed, rotationSpeed, maxSpeed);
+            
         }
+        // Spider dies
         if (isDead) 
         {
             enemyRb.velocity = new Vector3(0, 0, 0);
@@ -100,10 +110,20 @@ public class EnemyScript : MonoBehaviour
         }
     
     }
+
+    // For audio
+    public void AudioSetup() 
+    {
+        spiderAudio.Pause();
+        spiderAudio.PlayOneShot(squishAudio, 1f);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerBullet") || other.CompareTag("Explosion") || other.CompareTag("Player"))
-        { 
+        {
+            // Sounds
+            AudioSetup();
             // Set as dead
             isDead = true;
             animator.SetBool("isMoving", false);

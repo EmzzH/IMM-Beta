@@ -40,6 +40,11 @@ public class ShooterEnemyScript : MonoBehaviour
     public float deadTime = 3.0f;
     Animator animator;
 
+    // Sound
+    private AudioSource spiderAudio;
+    public AudioClip squishAudio;
+    public AudioClip gunShotSound;
+
     void Start()
     {
         // Set the animator
@@ -56,6 +61,10 @@ public class ShooterEnemyScript : MonoBehaviour
         spawnManager = FindObjectOfType<SpawnManager>();
         // Set the look direction
         enemyLocation = transform;
+        // Set the spiderAudio
+        spiderAudio = GetComponent<AudioSource>();
+        // Play the spider audio
+        spiderAudio.Play();
     }
 
 
@@ -78,6 +87,7 @@ public class ShooterEnemyScript : MonoBehaviour
                 reload = Time.time + 1f / fireRate;
             }
         }
+        // Spider dies
         if (isDead) 
         {
             enemyRb.velocity = new Vector3(0, 0, 0);
@@ -88,6 +98,8 @@ public class ShooterEnemyScript : MonoBehaviour
 
     void Fire() 
     {
+        // Play gunshot audio
+        spiderAudio.PlayOneShot(gunShotSound, 1f);
         // Calculate player direction
         Vector3 fireDirection = player.position - firePoint.position;
 
@@ -138,12 +150,20 @@ public class ShooterEnemyScript : MonoBehaviour
 
     }
 
+    // For audio
+    public void AudioSetup()
+    {
+        spiderAudio.Pause();
+        spiderAudio.PlayOneShot(squishAudio, 1f);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Enemy die
         if (other.CompareTag("PlayerBullet") || other.CompareTag("Explosion") || other.CompareTag("Player"))
         {
-           
+            // Sounds
+            AudioSetup();
             // Set as dead
             isDead = true;
             animator.SetBool("isMoving", false);

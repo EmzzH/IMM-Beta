@@ -9,11 +9,12 @@ public class ExplosionScript : MonoBehaviour
     // How long explosion lasts
     private float explosionTime = 0.3f;
     private float timeLeft = 0f;
-    
+
 
     // Update is called once per frame
     void Update()
     {
+        // Destroy the explosionObject
         timeLeft += Time.deltaTime;
         if (timeLeft > explosionTime)
         {
