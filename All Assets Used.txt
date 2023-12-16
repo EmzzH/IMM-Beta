@@ -1,8 +1,9 @@
+**Image Assets** 
+used on objects in the game:
 Tutorial : https://www.youtube.com/watch?v=AzItMI583kY&ab_channel=Dr.AfiqahHashim
- 
+
 Wall - https://www.google.com/url?sa=i&url=https%3A%2F%2Fseamless-pixels.blogspot.com%2F2012%2F07%2Fseamless-wall-white-paint-stucco.html&psig=AOvVaw0NSymA0TimqW985BGOhs3b&ust=1701888564845000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNjVsYz7-IIDFQAAAAAdAAAAABAE
 Explosion - https://as2.ftcdn.net/v2/jpg/00/02/68/43/1000_F_2684324_1KqrNgq002CL0ApUIwblQ5blP4aF34.jpg
-
 Ice - https://www.google.com/search?q=icy+stone+floor+texture&tbm=isch&hl=en&chips=q:icy+stone+floor+texture,online_chips:hand+painted:AxvSRosM7cA%3D&sa=X&ved=2ahUKEwjBkM_ig_uCAxUfQEEAHcUwDxAQ4lYoAXoECAEQNg&biw=1903&bih=954#imgrc=rqT_cj-ahPPrvM
 Snow - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.textures.com%2Fbrowse%2Fsnow%2F1996&psig=AOvVaw1FipBftly53Ra99-voP7in&ust=1701957488467000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJjph-77-oIDFQAAAAAdAAAAABAx
 Christmass Wall - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F13798345-christmas-background-seamless-pattern-winter-background-of-christmas-pine-fir-branches-on-brown-wood-texture-vector-xmas-backdrop-with-snow-on-wooden-panel-wall-seamless-banner-for-new-year&psig=AOvVaw2Jyy29wPOxMMyOMtnheAOP&ust=1701957780145000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJCalPn8-oIDFQAAAAAdAAAAABAE
@@ -10,3 +11,44 @@ Indoor Floor - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.sketchuptex
 Sky :https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/627c3c4c-136c-4902-be3a-4afe110b87e3/dga467q-4ee1122c-8228-4104-8f3d-41c36f87b53f.png/v1/fill/w_1280,h_720,q_80,strp/winter_night_sky_by_jacobmincey_dga467q-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvNjI3YzNjNGMtMTM2Yy00OTAyLWJlM2EtNGFmZTExMGI4N2UzXC9kZ2E0NjdxLTRlZTExMjJjLTgyMjgtNDEwNC04ZjNkLTQxYzM2Zjg3YjUzZi5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.Rfn7CL25_Ledoj7FB1O8rdNdgkgBDL0ZkeZCsclnO8A
 Carpet : https://i.pinimg.com/474x/79/e8/69/79e8699b577cbb5b56ec6118fa4fea22.jpg
 Coin : https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngimg.com%2Fimage%2F36910&psig=AOvVaw2jQNNzNxs7E0UqMyaK7Bk_&ust=1702335654214000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMC4p9D8hYMDFQAAAAAdAAAAABAI
+
+**Unity Asset Packs**
+Spiders:https://assetstore.unity.com/packages/3d/characters/animals/insects/spider-polygon-221108
+Models and annimations used for spider enemies
+
+Christmass: https://assetstore.unity.com/packages/3d/vegetation/trees/polycraft-christmas-tree-108277
+Tree's and present models used for decoration
+
+Fences: https://assetstore.unity.com/packages/3d/props/exterior/low-poly-fence-pack-61661
+Fence mondels used to border the player area
+
+More spiders: https://assetstore.unity.com/packages/3d/characters/creatures/fuga-spiders-with-destructible-eggs-and-mummy-151921
+These assets are used for the boss enemy
+
+Fantasy Assets: https://assetstore.unity.com/packages/3d/environments/fantasy/mega-fantasy-props-pack-87811
+More assets used for decoration of the shop
+
+Low Poly winter pack: https://assetstore.unity.com/packages/3d/characters/low-poly-winter-pack-78938
+This asset is the player model, as well as some assets used for decorating
+
+Weapons : https://assetstore.unity.com/packages/3d/props/guns/polygon-weapons-157724
+This asset is used for the player weapon models
+
+Mines : https://assetstore.unity.com/packages/3d/props/weapons/at-mine-37653
+This asset is used for the mine model
+
+**Audio**
+GameMusic - https://freesound.org/people/DenKyschuk/sounds/715787/
+ShopMusic - https://freesound.org/people/DenKyschuk/sounds/715785/
+MenuMusic - https://freesound.org/people/DenKyschuk/sounds/715788/
+DeadMusic - https://freesound.org/people/GregorQuendel/sounds/710938/
+Gunshot - https://freesound.org/people/razor2988/sounds/172877/
+Reloading - https://freesound.org/people/GFL7/sounds/276959/
+PlayerHit - https://freesound.org/people/bajko/sounds/378058/
+Spider - https://freesound.org/people/spookymodem/sounds/202108/
+Spider gun shot - https://freesound.org/people/pauliep83/sounds/34251/
+Squish (spider hit) - https://freesound.org/people/mrickey13/sounds/515620/
+Coins - https://freesound.org/people/ProjectsU012/sounds/341695/
+Explosion - https://freesound.org/people/derplayer/sounds/587183/
+Rocket - https://freesound.org/people/MATRIXXX_/sounds/441500/
+Landmine Placed - https://freesound.org/people/qubodup/sounds/184285/
